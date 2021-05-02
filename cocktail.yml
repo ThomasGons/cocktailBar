@@ -1,0 +1,431 @@
+# alcoholic cocktails
+
+- name: Balalaïka
+  alcoholic: true
+  ingredient:
+      - name: Cointreau
+        quantity: 20
+        alcohol: 40
+        sugar: 0
+        price: 32.6
+      - name: Ice cube
+        quantity: 54
+        alcohol: 0
+        sugar: 0
+        price: 0.1
+      - name: Lime
+        quantity: 40
+        alcohol: 0
+        sugar: 0
+        price: 3.5
+      - name: Vodka
+        quantity: 40
+        alcohol: 40
+        sugar: 0
+        price: 20
+
+- name: Caipirinha
+  alcoholic: true
+  ingredient:
+      - name: Cachaca
+        quantity: 60
+        alcohol: 45
+        sugar: 0
+        price: 25
+      - name: Lime
+        quantity: 10
+        alcohol: 0
+        sugar: 0.2
+        price: 3.5
+      - name: Sugar
+        quantity: 15
+        alcohol: 0
+        sugar: 15
+        price: 1
+
+
+- name: Coquito
+  alcoholic: true
+  ingredient:
+      - name: Cinnamon stick
+        quantity: 80
+        alcohol: 0
+        sugar: 1.8
+        price: 30 
+      - name: Cinnamon powder
+        quantity: 8
+        alcohol: 0
+        sugar: 0.18
+        price: 7
+      - name: Coconut cream
+        quantity: 200
+        alcohol: 0
+        sugar: 6.6
+        price: 5
+      - name: Egg yolk
+        quantity: 20
+        alcohol: 0
+        sugar: 0.12
+        price: 7
+      - name: Nutmeg
+        quantity: 8
+        alcohol: 0
+        sugar: 2.2
+        price: 75
+      - name: Sweetened condensed milk
+        quantity: 180
+        alcohol: 0
+        sugar: 99
+        price: 7
+      - name: Vanilla pod
+        quantity: 3.5
+        alcohol: 0
+        sugar: 0.45
+        price: 300
+      - name: White rum
+        quantity: 100
+        alcohol: 37.5
+        sugar: 0
+        price: 30
+
+- name: Margarita
+  alcoholic: true
+  ingredient:
+    - name: Lime
+      quantity: 20
+      alcohol: 0
+      sugar: 0.4
+      price: 3.5 
+    - name: Tequila
+      quantity: 40
+      alcohol: 35
+      sugar: 0
+      price: 30
+    - name: Triple sec
+      quantity: 20
+      alcohol: 30
+      sugar: 0
+      price: 21   
+
+- name: Mojito
+  alcoholic: true
+  ingredient:
+      - name: Lime juice
+        quantity: 10
+        alcohol: 0
+        sugar: 0.25
+        price: 3.5
+      - name: Sparkling water
+        quantity: 300
+        alcohol: 0
+        sugar: 0
+        price: 0.5 
+      - name: Sugarcane syrup
+        quantity: 40
+        alcohol: 0
+        sugar: 85
+        price: 5
+      - name: White rum
+        quantity: 40
+        alcohol: 37.5
+        sugar: 0
+        price: 30
+
+- name: Pina colada
+  alcoholic: true
+  ingredient:
+      - name: Coconut milk
+        quantity: 40
+        alcohol: 0
+        sugar: 19
+        price: 4.5
+      - name: Pineapple juice
+        quantity: 60
+        alcohol: 0
+        sugar: 110
+        price: 3
+      - name: White rhum
+        quantity: 60
+        alcohol: 56.25
+        sugar: 0
+        price: 10
+
+- name: Punch
+  alcoholic: true
+  ingredient:
+      - name: Grapefruit juice
+        quantity: 100
+        alcohol: 0
+        sugar: 14
+        price: 32
+      - name: Orange juice
+        quantity: 100
+        alcohol: 0
+        sugar: 8
+        price: 2
+      - name: Pineapple juice
+        quantity: 100
+        alcohol: 0
+        sugar: 1.4
+        price: 3
+      - name: Sugarcane syrup
+        quantity: 50
+        alcohol: 0
+        sugar: 42.5
+        price: 5 
+      - name: White rhum
+        quantity: 100
+        alcohol: 56.25
+        sugar: 0
+        price: 10  
+
+- name: Slushie
+  alcoholic: true
+  ingredient:
+      - name: Melon juice
+        quantity: 125
+        alcohol: 0
+        sugar: 17.5
+        price: 3
+      - name: Pink wine
+        quantity: 250
+        alcohol: 12
+        sugar: 0
+        price: 11
+
+- name: Spritz
+  alcoholic: true
+  ingredient:
+      - name: Campari
+        quantity: 40
+        alcohol: 28.5
+        sugar: 0
+        price: 35
+      - name: Pineapple juice
+        quantity: 40
+        alcohol: 0
+        sugar: 5.6
+        price: 3
+      - name: White wine
+        quantity: 60
+        alcohol: 12
+        sugar: 0
+        price: 10   
+
+# Non alcoholic cocktails
+
+- name: Bananarama
+  alcoholic: false
+  ingredient:
+      - name: Apricot juice
+        quantity: 120
+        alcohol: 0
+        sugar: 10.8
+        price: 3
+      - name: Banana juice
+        quantity: 80
+        alcohol: 0
+        sugar: 17.6
+        price: 6
+      - name: Coconut milk
+        quantity: 40
+        alcohol: 0
+        sugar: 1.32
+        price: 4.5
+
+- name: Bora Bora
+  alcoholic: false    
+  ingredient:
+      - name: Pineapple juice
+        quantity: 100
+        alcohol: 0
+        sugar: 12
+        price: 3
+      - name: Lime juice            
+        quantity: 10
+        alcohol: 0
+        sugar: 0.25
+        price: 3.5
+      - name: Passion fruit juice
+        quantity: 60
+        alcohol: 0
+        sugar: 7.20
+        price: 3
+      - name: Pomegrenate syrup
+        quantity: 20
+        alcohol: 0
+        sugar: 6
+        price: 7
+
+- name: Capitole
+  alcoholic: false
+  ingredient:
+      - name: Citrus soda
+        quantity: 50
+        alcohol: 0
+        sugar: 2.85
+        price: 4.5
+      - name: Mint syrup
+        quantity: 5
+        alcohol: 0
+        sugar: 3.25
+        price: 2
+      - name: Orange juice
+        quantity: 100
+        alcohol: 0
+        sugar: 8
+        price: 2
+
+- name: Incorruptible
+  alcoholic: false
+  ingredient:
+      - name: Grapefruit juice
+        quantity: 40
+        alcohol: 0
+        sugar: 5.6
+        price: 2
+      - name: Lime juice
+        quantity: 100
+        alcohol: 0
+        sugar: 2.5
+        price: 3.5
+      - name: Orange juice
+        quantity: 20
+        alcohol: 0
+        sugar: 1.6
+        price: 2
+
+- name: Mocktail
+  alcoholic: false
+  ingredient:
+      - name: Cinnamon syrup
+        quantity: 10
+        alcohol: 0
+        sugar: 5
+        price: 10
+      - name: Citrus soda
+        quantity: 85
+        alcohol: 0
+        sugar: 4.8
+        price: 4.5
+      - name: Orange juice
+        quantity: 40
+        alcohol: 0
+        sugar: 3.2
+        price: 2
+      - name: Strawberry syrup
+        quantity: 20
+        alcohol: 0
+        sugar: 16.8
+        price: 4.5
+
+- name: Nojito   
+  alcoholic: false
+  ingredient:
+      - name: Lime juice
+        quantity: 10
+        alcohol: 0
+        sugar: 0.25
+        price: 3.5
+      - name: Sparkling water
+        quantity: 150
+        alcohol: 0
+        sugar: 0
+        price: 0.5
+      - name: Sugarcane syrup
+        quantity: 30
+        alcohol: 0
+        sugar: 25.5
+        price: 5
+
+- name: Pina colada NA
+  alcoholic: false
+  ingredient:
+      - name: Coconut milk
+        quantity: 50
+        alcohol: 0
+        sugar: 1.6
+        price: 4.5
+      - name: Pina colada syrup
+        quantity: 15
+        alcohol: 0
+        sugar: 12.15
+        price: 11.5
+      - name: Pineapple juice
+        quantity: 100
+        alcohol: 0
+        sugar: 14
+        price: 3
+
+- name: Punch NA
+  alcoholic: false
+  ingredient:
+      - name: Grapefruit juice
+        quantity: 190
+        alcohol: 0
+        sugar: 26.6
+        price: 2
+      - name: Orange juice
+        quantity: 190
+        alcohol: 0
+        sugar: 15.2
+        price: 2  
+      - name: Pineapple juice
+        quantity: 190
+        alcohol: 0
+        sugar: 26.6
+        price: 3
+      - name: Sugarcane syrup
+        quantity: 50
+        alcohol: 0
+        sugar: 42.5
+        price: 5
+
+- name: Rio
+  alcoholic: false
+  ingredient:
+      - name: Lime juice
+        quantity: 125
+        alcohol: 0
+        sugar: 3.125
+        price: 3.5 
+      - name: Orange juice
+        quantity: 125
+        alcohol: 0
+        sugar: 2.5
+        price: 2
+      - name: Pomegrenate syrup
+        quantity: 15
+        alcohol: 0
+        sugar: 7.05
+        price: 3
+
+- name: Summer lemonade
+  alcoholic: false
+  ingredient:
+      - name: Lime juice
+        quantity: 40
+        alcohol: 0
+        sugar: 1
+        price: 3.5
+      - name: Melon juice
+        quantity: 15
+        alcohol: 0
+        sugar: 2.1
+        price: 3  
+      - name: Sugar
+        quantity: 15
+        alcohol: 0
+        sugar: 15
+        price: 1
+      - name: Water
+        quantity: 25
+        alcohol: 0
+        sugar: 0
+        price: 0.2
+      - name: Watermelon juice
+        quantity: 150
+        alcohol: 0
+        sugar: 1.01
+        price: 7.8
+
