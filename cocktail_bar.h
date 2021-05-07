@@ -7,7 +7,7 @@
 #include<stdbool.h>
 #include<cyaml/cyaml.h>
 
-#define COCKTAIL 19
+#define __INIT_COCKTAIL 19
 #define STOCK 35
 
 float turnover = 0;
@@ -31,13 +31,6 @@ typedef struct
 {
 	float volume, alcoholic, price, sugar;
 }Specs;
-
-typedef struct
-{
-	char* name;
-	float quantity;
-	float price;
-}Stock;
 
 
 static const cyaml_schema_field_t ingredient_fields_schema[] = {
@@ -81,22 +74,13 @@ static const cyaml_schema_value_t cocktail_sequence_schema = {
 };
 
 
-static const cyaml_schema_field_t stock_fields_schema[] = {
-	CYAML_FIELD_STRING_PTR("name", CYAML_FLAG_POINTER,
-			Stock, name, 0, CYAML_UNLIMITED),
-	CYAML_FIELD_FLOAT("quantity", CYAML_FLAG_DEFAULT,
-			Stock, quantity),
-	CYAML_FIELD_FLOAT("price", CYAML_FLAG_DEFAULT,
-			Stock, price),
-};
-
 static const cyaml_schema_value_t stock_schema = {
-    CYAML_VALUE_MAPPING(CYAML_FLAG_DEFAULT, Stock,
-            stock_fields_schema),
+    CYAML_VALUE_MAPPING(CYAML_FLAG_DEFAULT, Ingredient,
+            ingredient_fields_schema),
 };
 
 static const cyaml_schema_value_t stock_sequence_schema = {
-    CYAML_VALUE_SEQUENCE(CYAML_FLAG_POINTER, Stock,
+    CYAML_VALUE_SEQUENCE(CYAML_FLAG_POINTER, Ingredient,
         	&stock_schema, 0, CYAML_UNLIMITED),
 };
 
@@ -106,14 +90,17 @@ static const cyaml_config_t config = {
 	.mem_fn = cyaml_mem,            		// Use the default memory allocator. 
 };
 
-void yaml(Cocktail* cocktail, Stock* stock);
-void menu(Cocktail* cocktail, Stock* stock);
-void display_cocktail(Cocktail* cocktail, Stock* stock, bool value);
-void select_(Cocktail* cocktail, Stock* stock, int* amount);
+int count_cocktail(Cocktail* cocktail);
+void reset_yaml();
+void yaml(Cocktail** cocktail, Ingredient** stock, char* mode);
+void menu(Cocktail* cocktail, Ingredient* stock, int nb_cocktail);
+void display_cocktail(Cocktail* cocktail, Ingredient* stock, bool value, int nb_cocktail);
+void select_(Cocktail* cocktail, Ingredient* stock, int* amount, int nb_cocktail);
 Specs specificity(Ingredient* ingredient, size_t nb_ingredient);
-bool availability(Cocktail cocktail, Stock* stock);
-void homemade(Stock* stock);
-void quantity_Less(Ingredient *ingredient, Stock* stock, size_t nb_ingredient);
-void stock_var(Stock* stock);
+bool availability(Cocktail cocktail, Ingredient* stock);
+void homemade(Cocktail* cocktail, Ingredient* stock);
+void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredient, int size);
+void quantity_Less(Ingredient *ingredient, Ingredient* stock, size_t nb_ingredient);
+void stock_var(Ingredient* stock);
 
 #endif

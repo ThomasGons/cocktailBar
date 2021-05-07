@@ -1,0 +1,209 @@
+- name: cahaca
+  quantity: 1000
+  alcohol: 45
+  sugar: 0
+  price: 25
+
+- name: campari
+  quantity: 1000
+  alcohol: 40
+  sugar: 0
+  price: 35
+
+- name: cointreau
+  quantity: 1000
+  alcohol: 40
+  sugar: 0.25
+  price: 25
+
+- name: pink_wine
+  quantity: 1000
+  alcohol: 12
+  sugar: 0
+  price: 11
+
+- name: tequila
+  quantity: 1000
+  alcohol: 35
+  sugar: 0
+  price: 30
+
+- name: triple_sec
+  quantity: 1000
+  alcohol: 30
+  sugar: 0
+  price: 21
+
+- name: vodka
+  quantity: 1000
+  alcohol: 40
+  sugar: 0.025
+  price: 16.5
+
+- name: white_rum
+  quantity: 1000
+  alcohol: 37.5
+  sugar: 0
+  price: 30
+
+- name: white_wine
+  quantity: 1000
+  alcohol: 12
+  sugar: 0
+  price: 10
+
+- name: apricot_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.09
+  price: 3
+
+- name: banana_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.22
+  price: 6
+
+- name: cinnamon_syrup
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.5
+  price: 10
+
+- name: citrus_soda
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.057
+  price: 4.5
+
+- name: grapefruit_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.14
+  price: 2
+
+- name: lime_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.025
+  price: 3.5
+
+- name: melon_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.14
+  price: 3
+
+- name: mint_syrup
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.65
+  price: 3
+
+- name: orange_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.08
+  price: 2
+
+- name: passion_fruit_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.12
+  price: 3
+
+- name: pomegrenate_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.3
+  price: 7
+
+- name: pina_colada_syrup
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.81
+  price: 11.5
+
+- name: pineapple_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.14
+  price: 3
+
+- name: sparkling_water
+  quantity: 1000
+  alcohol: 0
+  sugar: 0
+  price: 0.5
+
+- name: strawberry_syrup
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.84
+  price: 4.5
+
+- name: water
+  quantity: 1000
+  alcohol: 0
+  sugar: 0
+  price: 0.2
+
+- name: watermelon_juice
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.073
+  price: 7.8
+
+- name: cinnamon_powder
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.022
+  price: 7
+
+- name: cinnamon_stick
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.022
+  price: 30
+
+- name: coconut_cream
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.033
+  price: 5
+
+- name: coconut_milk
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.033
+  price: 4.5
+
+- name: egg_yolk
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.006
+  price: 7
+
+- name: lime
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.002
+  price: 2
+
+- name: nutmeg
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.28
+  price: 75
+
+- name: sugar
+  quantity: 1000
+  alcohol: 0
+  sugar: 1
+  price: 1
+
+- name: sugarcane_syrup
+  quantity: 1000
+  alcohol: 0
+  sugar: 0.85
+  price: 5

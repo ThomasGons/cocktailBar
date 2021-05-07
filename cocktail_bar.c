@@ -2,17 +2,17 @@
 
 int main()
 {	
-    Cocktail* cocktail = NULL;
-	Stock* stock = NULL;
-	yaml(cocktail, stock);
-
+	Cocktail* cocktail = NULL;
+	Ingredient* stock = NULL;
+	yaml(&cocktail, &stock, "load");
+	int nb_cocktail = count_cocktail(cocktail);
 	char check[25], who[25];	
 	printf("Who are you:\n \t- bartender ?\n \t- customer(default) ?\n");
 	scanf("%s", who);
 	person = (strstr("bartender", who))? 1: 0;
 	do
 	{
-		menu(cocktail, stock);
+		menu(cocktail, stock, nb_cocktail);
 		printf("\nDo you want to make a cocktail (yes/no) ?\n");
 		scanf("%s", check);
 	}while (strstr("yes", check));
@@ -24,21 +24,59 @@ int main()
 	return 0;
 }
 
-void yaml(Cocktail* cocktail, Stock* stock)
-{
-	cyaml_err_t err_cocktail, err_stock;
-	unsigned cocktail_count, stock_count;
-	err_cocktail = cyaml_load_file("cocktail.yml", &config, &cocktail_sequence_schema,
-			(void **)&cocktail, &cocktail_count);
 
-	err_stock = cyaml_load_file("stock.yml", &config, &stock_sequence_schema,
-			(void **)&stock, &stock_count);
+int count_cocktail(Cocktail* cocktail)
+{
+	int i = 0, nb_cocktail = 0;
+	while(cocktail[i].name != NULL)
+	{
+		nb_cocktail++;
+		i++;
+	}
+	return nb_cocktail;
+}
+
+void reset_yaml()
+{
+	Cocktail* init_cocktail;
+	Ingredient* init_stock;
+	cyaml_err_t  err_cocktail, err_stock;
+	unsigned cocktail_count, stock_count;
+	err_cocktail = cyaml_load_file("init_cocktail.yml", &config, &cocktail_sequence_schema,
+			(void **)&init_cocktail, &cocktail_count);
+
+	err_stock = cyaml_load_file("init_stock.yml", &config, &stock_sequence_schema,
+			(void **)&init_stock, &stock_count);
+
+	if (err_cocktail != CYAML_OK || err_stock != CYAML_OK)
+		exit(EXIT_FAILURE);
+
+	err_cocktail = cyaml_save_file("tmp_cocktail.yml", &config, &cocktail_sequence_schema,
+			(void*)init_cocktail, __INIT_COCKTAIL);
+
+	err_stock = cyaml_save_file("tmp_stock.yml", &config, &stock_sequence_schema,
+			(void*)init_stock, STOCK);
 
 	if (err_cocktail != CYAML_OK || err_stock != CYAML_OK)
 		exit(EXIT_FAILURE);
 }
 
-void menu(Cocktail* cocktail, Stock* stock)
+void yaml(Cocktail** cocktail, Ingredient** stock, char* mode)
+{
+	cyaml_err_t err_cocktail, err_stock;
+	unsigned cocktail_count, stock_count;
+	err_cocktail = (!strcmp(mode, "load"))?cyaml_load_file("tmp_cocktail.yml", &config, &cocktail_sequence_schema,
+			(void **)cocktail, &cocktail_count): cyaml_save_file("tmp_coktail.yml", &config, &cocktail_sequence_schema,
+				(void*)*cocktail, count_cocktail(*cocktail));
+
+	err_stock = (!strcmp(mode, "load"))?cyaml_load_file("tmp_stock.yml", &config, &stock_sequence_schema,
+			(void **)stock, &stock_count): cyaml_save_file("tmp_stock.yml", &config, &stock_sequence_schema,
+				(void*)*stock, STOCK);
+	if (err_cocktail != CYAML_OK || err_stock != CYAML_OK)
+		exit(EXIT_FAILURE);
+}
+
+void menu(Cocktail* cocktail, Ingredient* stock, int nb_cocktail)
 {
 	char choice[25]; 
 	printf("\nDo you want to make:\n\t- an alcoholic cocktail,\n\t- non_alcoholic cocktail,\n\t- your own.\n");
@@ -46,26 +84,26 @@ void menu(Cocktail* cocktail, Stock* stock)
 	scanf("%s", choice);
 	//non_alcoholic sub_string of alcoholic
 	if (strstr("alcoholic", choice))
-		display_cocktail(cocktail, stock, true);
+		display_cocktail(cocktail, stock, true, nb_cocktail);
 	else if(strstr("non_alcoholic", choice))
-		display_cocktail(cocktail, stock, false);
+		display_cocktail(cocktail, stock, false, nb_cocktail);
 	else if(strstr("own", choice))
-		homemade(stock);
+		homemade(cocktail, stock);
 	else if(strstr("modify", choice))
 		stock_var(stock);
 	else
 	{
 		printf("Sorry, you've entered a wrong choice.\n");
-		menu(cocktail, stock);
+		menu(cocktail, stock, nb_cocktail);
 	}
 }	
 
 //We display all the cocktails alcoholic or non-acloholic among the card according to the customer choice
-void display_cocktail(Cocktail* cocktail, Stock* stock, bool value)
+void display_cocktail(Cocktail* cocktail, Ingredient* stock, bool value, int nb_cocktail)
 {
 	int amount[2];
-	Specs* specs = malloc(COCKTAIL * sizeof(Specs));
-	for (int i = 0; i < COCKTAIL; i++)
+	Specs* specs = malloc(nb_cocktail * sizeof(Specs));
+	for (int i = 0; i < nb_cocktail; i++)
 	{		
 		//value refers to the absence (false) or presence (true) of alcohol in the cocktails
 		specs[i] = specificity(cocktail[i].ingredient, cocktail[i].nb_ingredient);
@@ -73,7 +111,7 @@ void display_cocktail(Cocktail* cocktail, Stock* stock, bool value)
 			printf("\n- %s(%0.1f°, %0.1f g (sugar)), %0.2f cL, %0.2f €", cocktail[i].name,
 					specs[i].alcoholic, specs[i].sugar, specs[i].volume, specs[i].price);
 	}
-	select_(cocktail, stock, amount);
+	select_(cocktail, stock, amount, nb_cocktail);
 	turnover += specs[amount[0]].price * amount[1];
 	free(specs);
 }
@@ -98,19 +136,19 @@ Specs specificity(Ingredient *ingredient, size_t nb_ingredient)
 }
 
 //We get the cocktail chosen by the customer 
-void select_(Cocktail* cocktail, Stock* stock, int* amount)
+void select_(Cocktail* cocktail, Ingredient* stock, int* amount, int nb_cocktail)
 {
 	char selection[50], test[25];
 	printf("\n\nWhich cocktail do you want ?\n\n\t");
 	scanf("%s", selection);
-	for (int i = 0; i < COCKTAIL; i++)
+	for (int i = 0; i < nb_cocktail; i++)
 	{
 		if (strstr(cocktail[i].name, selection))
 		{
 			if (availability(cocktail[i], stock) == false)
 			{
 				printf("\nSorry, I don't have enough ingredients to make a %s.\n", cocktail[i].name);
-				select_(cocktail, stock, amount);
+				select_(cocktail, stock, amount, nb_cocktail);
 			}
 			printf("\nA %s, very good choice it's my favorite cocktail.\n", cocktail[i].name);
 			printf("How many %s do you want?\n", cocktail[i].name);
@@ -129,11 +167,11 @@ void select_(Cocktail* cocktail, Stock* stock, int* amount)
 		}
 	}
 	printf("\nExcuse me, I don't know this cocktail.\n");
-	select_(cocktail, stock, amount);
+	select_(cocktail, stock, amount, nb_cocktail);
 }
 
 //We see if the bartender can create the cocktail among the available ingredients in the stock
-bool availability(Cocktail cocktail, Stock* stock)
+bool availability(Cocktail cocktail, Ingredient* stock)
 {
 	for (size_t i = 0; i < cocktail.nb_ingredient ; i++)
 	{
@@ -146,9 +184,9 @@ bool availability(Cocktail cocktail, Stock* stock)
 	return true;
 } 
 
-void homemade(Stock* stock)
+void homemade(Cocktail* cocktail, Ingredient* stock)
 {
-	int i, amount, count = 0;
+	int i, count = 0;
 	bool check = true;
 	float quantity;
 	char choice[25], test[25];
@@ -166,13 +204,13 @@ void homemade(Stock* stock)
 			scanf("%s", choice);
 			for(i = 0; i < STOCK; i++)
 			{
-				if(strstr(stock[i].name, choice))
+				if(!strcmp(stock[i].name, choice))
 				{
 					check = false;
 					break;
 				}
 			}	
-			if (check == true)
+			if (check == false)
 			{
 				p_ingredient[count].price = stock[i].price;
 				printf("What quantity of %s do you want ?\n", choice);
@@ -203,12 +241,51 @@ void homemade(Stock* stock)
 			stock_var(stock);
 	}
 	Specs specs = specificity(p_ingredient, count);
+	int amount;
 	printf("\nHow many of your marvellous cocktail do you want ?\n");
 	scanf("%d", &amount);
 	turnover += specs.price * amount;
+	printf("Do you want to add your cocktail to the list (yes/no)?\n");
+	scanf("%s", test);
+	if (strstr("yes", test))
+		save_cocktail(cocktail, stock, p_ingredient, count);
 }
 
-void quantity_Less(Ingredient* ingredient, Stock* stock, size_t nb_ingredient)
+void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredient, int size)
+{
+	int amongus = 0, nb_cocktail = count_cocktail(cocktail);
+	if (realloc(cocktail, (nb_cocktail + 1) * sizeof(Cocktail)) == NULL)
+		return;
+	printf("Enter a name for your creation: ");
+	scanf("%s", cocktail[nb_cocktail].name);
+	printf("\nname: %s", cocktail[nb_cocktail].name);
+	cocktail[nb_cocktail].ingredient = malloc(size * sizeof(Ingredient));
+	for (int i = 0; i < size; i++)
+	{
+		cocktail[nb_cocktail].ingredient[i].name = p_ingredient[i].name;
+		cocktail[nb_cocktail].ingredient[i].quantity = p_ingredient[i].quantity;	
+		for (int j = 0; j < STOCK; j++)
+		{
+			if (cocktail[nb_cocktail].ingredient[i].name == stock[j].name)
+			{
+				cocktail[nb_cocktail].ingredient[i].alcohol = stock[j].alcohol;
+				cocktail[nb_cocktail].ingredient[i].sugar = stock[j].sugar;
+				cocktail[nb_cocktail].ingredient[i].price = stock[j].price * cocktail[nb_cocktail].ingredient[i].quantity * 0.001;
+				if (cocktail[nb_cocktail].ingredient[i].alcohol > 0)
+					amongus = 1;
+				printf("\n\t- name: %s, \n\t- quantity: %f, \n\t- alcohol: %f, \n\t- sugar: %f, \n\tprice: %f", cocktail[nb_cocktail].ingredient[i].name,
+						cocktail[nb_cocktail].ingredient[i].quantity, cocktail[nb_cocktail].ingredient[i].alcohol, cocktail[nb_cocktail].ingredient[i].sugar,
+						cocktail[nb_cocktail].ingredient[i].price);
+				break;
+			}
+		}
+	}
+	cocktail[nb_cocktail].alcoholic = (amongus == 1)? true: false;
+	(cocktail[nb_cocktail].alcoholic == true)? printf("\nalcoholic: true"): printf("\nalcoholic: false");
+	yaml(&cocktail, &stock, "save");
+}
+
+void quantity_Less(Ingredient* ingredient, Ingredient* stock, size_t nb_ingredient)
 {
     for (size_t i = 0; i < nb_ingredient; i++)
     {
@@ -222,7 +299,7 @@ void quantity_Less(Ingredient* ingredient, Stock* stock, size_t nb_ingredient)
 	}
 }
 
-void stock_var(Stock* stock)
+void stock_var(Ingredient* stock)
 {
 	int i;
 	float quantity;

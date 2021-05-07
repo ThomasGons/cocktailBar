@@ -8,3 +8,4 @@ executable('cocktail_bar',
            'cocktail_bar.c',
            dependencies: dep,
            install : true)
+
