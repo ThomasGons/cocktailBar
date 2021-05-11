@@ -2,7 +2,7 @@
 
 # Paths
 DSRC = src
-DOBJ = obj/cocktail_bar.o
+OBJ = obj/cocktail_bar.o
 EXE = cocktail_bar
 
 PKGCONFIG = $(shell which pkg-config)
@@ -23,14 +23,15 @@ CFLAGS = -g -O2 -Wextra -Wall -Wunused\
 all: $(EXE)
 
 
-$(DOBJ): $(DSRC)/*.c
+$(OBJ): $(DSRC)/*.c
+	@mkdir -p obj
 	$(CC) -o $@ -c $< $(CFLAGS)
 
-$(EXE): $(DOBJ) $(YAML) 
+$(EXE): $(OBJ) $(YAML) 
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm $(DOBJ) $(EXE)
+	rm $(OBJ) $(EXE)
 
 $(YAML):
 	pushd libcyaml
