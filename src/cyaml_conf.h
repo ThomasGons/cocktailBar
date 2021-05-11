@@ -2,6 +2,8 @@
 #define __CYAML_CONF_H
 
 #include<cyaml/cyaml.h>
+#include<cocktail_bar.h>
+
 
 static const cyaml_schema_field_t ingredient_fields_schema[] = {
 	CYAML_FIELD_STRING_PTR("name", CYAML_FLAG_POINTER,
