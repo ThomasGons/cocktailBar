@@ -405,3 +405,6 @@
     alcohol: 0
     sugar: 1.01
     price: 7.8
+- name: test
+  alcoholic: false
+  ingredient: []

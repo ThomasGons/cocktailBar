@@ -1,37 +1,7 @@
-#ifndef __COCKTAIL_BAR_H__
-#define __COCKTAIL_BAR_H__
+#ifndef __CYAML_CONF_H__
+#define __CYAML_CONF_H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<stdbool.h>
 #include<cyaml/cyaml.h>
-
-#define __INIT_COCKTAIL 19
-#define STOCK 35
-
-float turnover = 0;
-int person;
-
-typedef struct
-{
-	float quantity, alcohol, sugar, price;
-	char* name;
-}Ingredient;
-
-typedef struct
-{	
-	char* name;
-	bool alcoholic;
-	size_t nb_ingredient;
-	Ingredient* ingredient;
-}Cocktail;
-
-typedef struct
-{
-	float volume, alcoholic, price, sugar;
-}Specs;
-
 
 static const cyaml_schema_field_t ingredient_fields_schema[] = {
 	CYAML_FIELD_STRING_PTR("name", CYAML_FLAG_POINTER,
@@ -89,18 +59,5 @@ static const cyaml_config_t config = {
 	.log_fn = cyaml_log,            		// Use the default logging function. 
 	.mem_fn = cyaml_mem,            		// Use the default memory allocator. 
 };
-
-int count_cocktail(Cocktail* cocktail);
-void reset_yaml();
-void yaml(Cocktail** cocktail, Ingredient** stock, char* mode);
-void menu(Cocktail* cocktail, Ingredient* stock, int nb_cocktail);
-void display_cocktail(Cocktail* cocktail, Ingredient* stock, bool value, int nb_cocktail);
-void select_(Cocktail* cocktail, Ingredient* stock, int* amount, int nb_cocktail);
-Specs specificity(Ingredient* ingredient, size_t nb_ingredient);
-bool availability(Cocktail cocktail, Ingredient* stock);
-void homemade(Cocktail* cocktail, Ingredient* stock);
-void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredient, int size);
-void quantity_Less(Ingredient *ingredient, Ingredient* stock, size_t nb_ingredient);
-void stock_var(Ingredient* stock);
 
 #endif
