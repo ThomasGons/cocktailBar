@@ -50,19 +50,19 @@ void reset_yaml()
 	Ingredient* init_stock;
 	cyaml_err_t  err_cocktail, err_stock;
 	unsigned cocktail_count, stock_count;
-	err_cocktail = cyaml_load_file("../config/init_cocktail.yml", &config, &cocktail_sequence_schema,
+	err_cocktail = cyaml_load_file("config/init_cocktail.yml", &config, &cocktail_sequence_schema,
 			(void **)&init_cocktail, &cocktail_count);
 
-	err_stock = cyaml_load_file("../config/init_stock.yml", &config, &stock_sequence_schema,
+	err_stock = cyaml_load_file("config/init_stock.yml", &config, &stock_sequence_schema,
 			(void **)&init_stock, &stock_count);
 
 	if (err_cocktail != CYAML_OK || err_stock != CYAML_OK)
 		exit(EXIT_FAILURE);
 
-	err_cocktail = cyaml_save_file("../config/tmp_cocktail.yml", &config, &cocktail_sequence_schema,
+	err_cocktail = cyaml_save_file("config/tmp_cocktail.yml", &config, &cocktail_sequence_schema,
 			(void*)init_cocktail, __INIT_COCKTAIL);
 
-	err_stock = cyaml_save_file("../config/tmp_stock.yml", &config, &stock_sequence_schema,
+	err_stock = cyaml_save_file("config/tmp_stock.yml", &config, &stock_sequence_schema,
 			(void*)init_stock, STOCK);
 
 	if (err_cocktail != CYAML_OK || err_stock != CYAML_OK)
@@ -73,12 +73,12 @@ void yaml(Cocktail** cocktail, Ingredient** stock, char* mode)
 {
 	cyaml_err_t err_cocktail, err_stock;
 	unsigned cocktail_count, stock_count;
-	err_cocktail = (!strcmp(mode, "load"))?cyaml_load_file("../config/tmp_cocktail.yml", &config, &cocktail_sequence_schema,
-			(void **)cocktail, &cocktail_count): cyaml_save_file("../config/tmp_coktail.yml", &config, &cocktail_sequence_schema,
+	err_cocktail = (!strcmp(mode, "load"))?cyaml_load_file("config/tmp_cocktail.yml", &config, &cocktail_sequence_schema,
+			(void **)cocktail, &cocktail_count): cyaml_save_file("config/tmp_coktail.yml", &config, &cocktail_sequence_schema,
 				(void*)*cocktail, count_cocktail(*cocktail));
 
-	err_stock = (!strcmp(mode, "load"))?cyaml_load_file("../config/tmp_stock.yml", &config, &stock_sequence_schema,
-			(void **)stock, &stock_count): cyaml_save_file("../config/tmp_stock.yml", &config, &stock_sequence_schema,
+	err_stock = (!strcmp(mode, "load"))?cyaml_load_file("config/tmp_stock.yml", &config, &stock_sequence_schema,
+			(void **)stock, &stock_count): cyaml_save_file("config/tmp_stock.yml", &config, &stock_sequence_schema,
 				(void*)*stock, STOCK);
 	if (err_cocktail != CYAML_OK || err_stock != CYAML_OK)
 		exit(EXIT_FAILURE);
