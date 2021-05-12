@@ -1,13 +1,13 @@
 # Makefile COCKTAIL_BAR
 
 # Paths
-DSRC = src
+DSRC = $(wildcard src/*.c) $(wildcard src/*.h)
 OBJ = obj/cocktail_bar.o
 EXE = cocktail_bar
 
 PKGCONFIG = $(shell which pkg-config)
 
-YAML = $(DSRC)/libcyaml/build/release/libcyaml.a 
+YAML = src/libcyaml/build/release/libcyaml.a 
 
 # compiler
 CC = gcc
@@ -17,18 +17,20 @@ LDFLAGS = -lyaml $(shell $(PKGCONFIG) --libs gtk+-3.0)
 
 # Compiler flags
 CFLAGS = -g -O2 -Wextra -Wall -Wunused\
-		-Ilibcyaml/include $(shell $(PKGCONFIG) --cflags gtk+-3.0)
+		 -Ilibcyaml/include $(shell $(PKGCONFIG) --cflags gtk+-3.0)
 
 # Target
 all: $(EXE)
 
 
-$(OBJ): $(DSRC)/*.c
+$(OBJ): $(DSRC)
 	@mkdir -p obj
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 $(EXE): $(OBJ) $(YAML) 
 	$(CC) -o $@ $^ $(LDFLAGS)
+
+.PHONY : clean
 
 clean:
 	rm $(OBJ) $(EXE)

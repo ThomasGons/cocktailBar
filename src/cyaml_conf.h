@@ -2,8 +2,7 @@
 #define __CYAML_CONF_H
 
 #include<cyaml/cyaml.h>
-#include<cocktail_bar.h>
-
+#include"cocktail_bar.h"
 
 static const cyaml_schema_field_t ingredient_fields_schema[] = {
 	CYAML_FIELD_STRING_PTR("name", CYAML_FLAG_POINTER,
@@ -57,7 +56,7 @@ static const cyaml_schema_value_t stock_sequence_schema = {
 };
 
 static const cyaml_config_t config = {
-	.log_level = CYAML_LOG_WARNING, 		// Logging errors and warnings only.
+	.log_level = CYAML_LOG_INFO, 		// Logging errors and warnings only.
 	.log_fn = cyaml_log,            		// Use the default logging function. 
 	.mem_fn = cyaml_mem,            		// Use the default memory allocator. 
 };
