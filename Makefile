@@ -2,8 +2,8 @@
 
 # Paths
 DSRC = $(wildcard src/*.c) $(wildcard src/*.h)
-OBJ = obj/cocktail_bar.o
-EXE = cocktail_bar
+OBJ = bin/cocktail_bar.o
+EXE = bin/cocktail_bar
 
 PKGCONFIG = $(shell which pkg-config)
 
@@ -24,7 +24,7 @@ all: $(EXE)
 
 
 $(OBJ): $(DSRC)
-	@mkdir -p obj
+	@mkdir -p bin
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 $(EXE): $(OBJ) $(YAML) 
