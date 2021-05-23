@@ -35,9 +35,9 @@ int main()
 	Ingredient* stock = NULL;
 	yaml(&cocktail, &stock, "load");  //loading of cocktails and stock's elements
 	int nb_cocktail = count_cocktail(cocktail); 
-	printf("nb_cocktail = %d", nb_cocktail);
 	Order *order = malloc(sizeof(Order));  // Initialization of the order which contains cocktails and number of them
 	order->content = malloc(sizeof(Cocktail)); // Initialization of the cocktail sequence at one cocktail
+	order->amount = malloc(sizeof(int));
 	order->size = 0;
 	// while user want to choose a cocktail or modify the stock 
 	do
@@ -248,6 +248,7 @@ Specs specificity(Ingredient *ingredient, unsigned nb_ingredient)
 
 void select_(Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktail)
 {
+	int j;
 	char selection[50], test[25];
 	printf("\n\nWhich cocktail do you want ?\n\n\t");
 	scanf("%s", selection);
@@ -262,12 +263,25 @@ void select_(Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktai
 				select_(cocktail, stock, order, nb_cocktail);
 			}
 			printf("\nA %s, very good choice it's my favorite cocktail.\n", cocktail[i].name);
-			order->size++;
-			// resize content to put a new cocktail in the order
-			order->content = realloc(order->content, order->size * sizeof(Cocktail));
 			if (order->content == NULL)
 				return;
-			order->content[order->size - 1] = cocktail[i];
+			for (j = 0 ; j < order->size; j++)
+			{
+				if (!strcmp(order->content[j].name, cocktail[i].name))
+				{	
+					order->amount[j]++;
+					break;
+				}		
+			}
+			if(j == order->size)
+			{
+				order->size++;
+				order->amount = realloc(order->amount, order->size * sizeof(int));
+				order->amount[order->size - 1] = 1;
+				// resize content to put a new cocktail in the order
+				order->content = realloc(order->content, order->size * sizeof(Cocktail));
+				order->content[order->size - 1] = cocktail[i];
+			}
 			// remove ingredients used for the cocktail from the stock in their quantity
 			quantity_Less(cocktail[i].ingredient, stock, cocktail[i].nb_ingredient);
 			// only bartender can modify the stock
@@ -407,6 +421,8 @@ void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredie
 	int amongus = 0, nb_cocktail = count_cocktail(cocktail);
 	Cocktail cocktail_spe;
 	order->size++;
+	order->amount = realloc(order->amount , order->size * sizeof(int));
+	order->amount[order->size - 1] = 1;
 	// resize content to put a new cocktail in the order
 	order->content = realloc(order->content, order->size * sizeof(Cocktail));
 	// initialization of the new cocktail cocktail_spe and last cocktail of the order
@@ -516,7 +532,7 @@ void stock_var(Ingredient* stock)
 		scanf("%s", ingredient);
 		for (i = 0; i < STOCK; i++)
 		{
-			if (strstr(stock[i].name, ingredient))
+			if (!strcmp(ingredient,stock[i].name))
 			{
 				printf("\nYou want to: \n\t- add some %s (default) ;\n\t- remove some %s;\n", stock[i].name, stock[i].name);
 				scanf("%s", modify);
@@ -554,24 +570,15 @@ to increase the number of cocktail to order or to decrease it as well as to canc
 
 void order_var(Order* order)
 {
-	int amount[order->size], i, quantity;
+	int  i, quantity;
 	// creation a sequence of Specs to characterize cocktails in the order 
 	Specs specs[order->size];
 	printf("Here is your order:\n");
-	printf("nb_ingredient: %d", order->content[0].nb_ingredient);
-	for (i = 0; i < (int)order->content[0].nb_ingredient; i++)
-	{
-		printf("name: %s, quantity: %0.2f, alcohol: %0.2f, sugar: %0.2f, price: %0.2f", order->content[0].ingredient[i].name,
-				order->content[0].ingredient[i].quantity, order->content[0].ingredient[i].alcohol,
-				order->content[0].ingredient[i].sugar, order->content[0].ingredient[i].price);
-	}
 	for (i = 0; i < order->size; i++)
-	{	
-		// set the quantity of all the cocktails to one
-		amount[i] = 1;
+	{
 		specs[i] = specificity(order->content[i].ingredient, order->content[i].nb_ingredient);
 		// display some useful informations about the cocktails 
-		printf("\t- %s(%d), %0.2f $\n", order->content[i].name, amount[i], specs[i].price);
+		printf("\t- %s(%d), %0.2f $\n", order->content[i].name, order->amount[i], order->amount[i] * specs[i].price);
 	}
 	char choice[25], change[25];   
 	printf("Do you want to modify your order (yes/no)?\n");
@@ -587,7 +594,7 @@ void order_var(Order* order)
 				{
 					printf("How many %s do you want to add(+) or to remove(-) ?\n", order->content[i].name);
 					scanf("%d", &quantity);
-					amount[i] = (amount[i] + quantity < 0)? 0: amount[i] + quantity;
+					order->amount[i] = (order->amount[i] + quantity < 0)? 0: order->amount[i] + quantity;
 					break;
 				}
 			}
@@ -602,8 +609,8 @@ void order_var(Order* order)
 	{	
 		// recall of specificity if a cocktail has been removed 
 		specs[i] = specificity(order->content[i].ingredient, order->content[i].nb_ingredient);
-		printf("\t- %s(%d), %0.2f $\n", order->content[i].name, amount[i], specs[i].price);
-		turnover += specs[i].price * amount[i];
+		printf("\t- %s(%d), %0.2f $\n", order->content[i].name, order->amount[i], (specs[i].price * order->amount[i]));
+		turnover += specs[i].price * order->amount[i];
 	}
 }
 

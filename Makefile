@@ -16,7 +16,7 @@ CC = gcc
 LDFLAGS = -lyaml $(shell $(PKGCONFIG) --libs gtk+-3.0)
 
 # Compiler flags
-CFLAGS = -g -O2 -Wextra -Wall -Wunused\
+CFLAGS = -g -O2 -Wextra -Wall \
 		 -Isrc/libcyaml/include $(shell $(PKGCONFIG) --cflags gtk+-3.0)
 
 MAKE = make

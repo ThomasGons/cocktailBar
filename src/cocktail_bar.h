@@ -44,6 +44,7 @@ typedef struct
 typedef struct
 {
 	Cocktail* content;
+	int* amount;
 	int size;
 }Order;
 
