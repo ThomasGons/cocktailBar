@@ -1,6 +1,6 @@
 # alcoholic cocktails
 
-- name: balalaïka
+- name: balalaika
   alcoholic: true
   ingredient:
     - name: cointreau

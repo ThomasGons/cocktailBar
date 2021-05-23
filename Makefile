@@ -17,7 +17,9 @@ LDFLAGS = -lyaml $(shell $(PKGCONFIG) --libs gtk+-3.0)
 
 # Compiler flags
 CFLAGS = -g -O2 -Wextra -Wall -Wunused\
-		 -Ilibcyaml/include $(shell $(PKGCONFIG) --cflags gtk+-3.0)
+		 -Isrc/libcyaml/include $(shell $(PKGCONFIG) --cflags gtk+-3.0)
+
+MAKE = make
 
 # Target
 all: $(EXE)
@@ -30,13 +32,14 @@ $(OBJ): $(DSRC)
 $(EXE): $(OBJ) $(YAML) 
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-.PHONY : clean
+.PHONY : clean init
 
 clean:
 	rm $(OBJ) $(EXE)
 
-$(YAML):
-	pushd libcyaml
-	$(MAKE) VARIANT=release
-	popd
+init:
+	$(shell git submodule init && git submodule update)
 
+
+$(YAML):
+	( cd src/libcyaml; $(MAKE) VARIANT=release )

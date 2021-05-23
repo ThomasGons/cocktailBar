@@ -1,6 +1,14 @@
 #ifndef __COCKTAIL_BAR_H__
 #define __COCKTAIL_BAR_H__
 
+/*!
+\file cocktail_bar.h
+\author Gons Thomas, Alzoubaidy Maxime, Laghzaoui Marwane
+\version latest
+\date 21/05/2021
+\brief file containing all the structures
+*/
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
