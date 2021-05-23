@@ -38,7 +38,7 @@ clean:
 	rm $(OBJ) $(EXE)
 
 init:
-	$(shell git submodule init && git submodule update)
+	@shell git submodule init && git submodule update
 
 
 $(YAML):
