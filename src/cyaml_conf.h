@@ -1,6 +1,14 @@
 #ifndef __CYAML_CONF_H__
 #define __CYAML_CONF_H
 
+/*!
+\file cyaml_conf.h
+\author Gons Thomas, Alzoubaidy Maxime, Laghzaoui Marwane
+\version final
+\date 21/05/2021
+\brief file containing configuration for cyaml
+*/
+
 #include<cyaml/cyaml.h>
 #include"cocktail_bar.h"
 
@@ -56,7 +64,7 @@ static const cyaml_schema_value_t stock_sequence_schema = {
 };
 
 static const cyaml_config_t config = {
-	.log_level = CYAML_LOG_WARNING, 		// Logging errors and warnings only.
+	.log_level = CYAML_LOG_INFO, 		// Logging errors and warnings only.
 	.log_fn = cyaml_log,            		// Use the default logging function. 
 	.mem_fn = cyaml_mem,            		// Use the default memory allocator. 
 };

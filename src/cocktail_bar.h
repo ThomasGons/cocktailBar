@@ -4,7 +4,7 @@
 /*!
 \file cocktail_bar.h
 \author Gons Thomas, Alzoubaidy Maxime, Laghzaoui Marwane
-\version latest
+\version final
 \date 21/05/2021
 \brief file containing all the structures
 */
@@ -49,16 +49,15 @@ typedef struct
 }Order;
 
 
-int count_cocktail(Cocktail* cocktail);
 void reset_yaml();
-void yaml(Cocktail** cocktail, Ingredient** stock, char* mode);
+int yaml(Cocktail** cocktail, Ingredient** stock, char* mode, int nb_cocktail);
 void menu(Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktail);
 void display_cocktail(Cocktail* cocktail, Ingredient* stock, Order* order, bool value, int nb_cocktail);
 void select_(Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktail);
 Specs specificity(Ingredient* ingredient, unsigned nb_ingredient);
 bool availability(Cocktail cocktail, Ingredient* stock);
-void homemade(Cocktail* cocktail, Ingredient* stock, Order* order);
-void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredient, Order* order, char* mode, int size);
+void homemade(Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktail);
+void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredient, Order* order, char* mode, int nb_cocktail, int size);
 void quantity_Less(Ingredient *ingredient, Ingredient* stock, size_t nb_ingredient);
 void stock_var(Ingredient* stock);
 void order_var(Order* order);

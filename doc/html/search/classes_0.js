@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cocktail_19',['Cocktail',['../structCocktail.html',1,'']]]
+  ['cocktail_16',['Cocktail',['../structCocktail.html',1,'']]]
 ];

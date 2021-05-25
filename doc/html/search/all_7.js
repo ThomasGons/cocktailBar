@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quantity_5fless_12',['quantity_Less',['../cocktail__bar_8c.html#abfa112a201d920a23bf4583fcd18dcea',1,'quantity_Less(Ingredient *ingredient, Ingredient *stock, size_t nb_ingredient):&#160;cocktail_bar.c'],['../cocktail__bar_8h.html#af8fa3865a35529bcded5fb55b645c88a',1,'quantity_Less(Ingredient *ingredient, Ingredient *stock, size_t nb_ingredient):&#160;cocktail_bar.c']]]
+  ['reset_5fyaml_12',['reset_yaml',['../cocktail__bar_8c.html#afd5f2f13d0a30ba2557b6877a9321b1a',1,'reset_yaml():&#160;cocktail_bar.c'],['../cocktail__bar_8h.html#ae4dadd4ed485e482e91ef71236d4826c',1,'reset_yaml():&#160;cocktail_bar.c']]]
 ];

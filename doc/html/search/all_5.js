@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['main_8',['main',['../cocktail__bar_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'cocktail_bar.c']]],
-  ['menu_9',['menu',['../cocktail__bar_8c.html#ae4e0e119334fe1aca3ec8f36f19901f4',1,'menu(Cocktail *cocktail, Ingredient *stock, Order *order, int nb_cocktail):&#160;cocktail_bar.c'],['../cocktail__bar_8h.html#ad8eba37bb2dda217712b0b561fded23f',1,'menu(Cocktail *cocktail, Ingredient *stock, Order *order, int nb_cocktail):&#160;cocktail_bar.c']]]
+  ['order_9',['Order',['../structOrder.html',1,'']]],
+  ['order_5fvar_10',['order_var',['../cocktail__bar_8c.html#a832874c841454f87b3e3ab6985b0a9b4',1,'order_var(Order *order):&#160;cocktail_bar.c'],['../cocktail__bar_8h.html#a8d3d2238cfcc8375173c5c767f0264fc',1,'order_var(Order *order):&#160;cocktail_bar.c']]]
 ];

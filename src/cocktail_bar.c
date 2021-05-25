@@ -1,7 +1,7 @@
 /*!
 \file cocktail_bar.c
 \author Gons Thomas, Alzoubaidy Maxime, Laghzaoui Marwane
-\version 1.5
+\version final
 \date 21/05/2021
 \brief file containing all the fonctions of the program
 */
@@ -12,6 +12,7 @@
 /*! 
 \fn int main()
 \author Gons Thomas, Alzoubaidy Maxime, Laghzaoui Marwane
+\version final
 \date 21/05/2021
 \brief The main fonction which contains the calls of the functions of the program
 \return 0 if it worked properly
@@ -33,8 +34,7 @@ int main()
 	// declaration and initialization of cocktail and stock sequences 
 	Cocktail* cocktail = NULL;
 	Ingredient* stock = NULL;
-	yaml(&cocktail, &stock, "load");  //loading of cocktails and stock's elements
-	int nb_cocktail = count_cocktail(cocktail); 
+	int nb_cocktail = yaml(&cocktail, &stock, "load", 0);  //loading of cocktails and stock's elements
 	Order *order = malloc(sizeof(Order));  // Initialization of the order which contains cocktails and number of them
 	order->content = malloc(sizeof(Cocktail)); // Initialization of the cocktail sequence at one cocktail
 	order->amount = malloc(sizeof(int));
@@ -57,29 +57,9 @@ int main()
 }
 
 /*!
-\fn count_cocktail ( Cocktail* cocktail)
-\author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
-\date May 21, 2021
-\brief Function allowing to count the number of available cocktails.
-\param *cocktail array containing all our cocktails.
-\return i returns the number of cocktails
-*/
-
-int count_cocktail(Cocktail* cocktail)
-{
-	int i = 0;
-	while(cocktail[i].nb_ingredient <= STOCK)
-	{
-		i++;
-	}
-	return i;
-}
-
-/*!
 \fn reset_yaml
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief replace the temporary content's file by the init content's
 */
@@ -114,7 +94,7 @@ void reset_yaml()
 /*!
 \fn yaml ( Cocktail** cocktail, Ingredient** stock, char* mode )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief load or save temporary content's file
 \param *cocktail, table containing all our cocktails
@@ -122,14 +102,14 @@ void reset_yaml()
 \param *mode allows to choose between saving a cocktail or create a cocktail
 */
 
-void yaml(Cocktail** cocktail, Ingredient** stock, char* mode)
+int yaml(Cocktail** cocktail, Ingredient** stock, char* mode, int nb_cocktail)
 {
 	cyaml_err_t err_cocktail, err_stock;
-	unsigned cocktail_count, stock_count;
+	unsigned cocktail_count, stock_count; 
 	// loading or saving structure's datas according to the mode 
 	err_cocktail = (!strcmp(mode, "load"))?cyaml_load_file("config/tmp_cocktail.yml", &config, &cocktail_sequence_schema,
 			(void **)cocktail, &cocktail_count): cyaml_save_file("config/tmp_cocktail.yml", &config, &cocktail_sequence_schema,
-				(void*)*cocktail, count_cocktail(*cocktail));
+				(void*)*cocktail, nb_cocktail);
 
 	err_stock = (!strcmp(mode, "load"))?cyaml_load_file("config/tmp_stock.yml", &config, &stock_sequence_schema,
 			(void **)stock, &stock_count): cyaml_save_file("config/tmp_stock.yml", &config, &stock_sequence_schema,
@@ -137,12 +117,13 @@ void yaml(Cocktail** cocktail, Ingredient** stock, char* mode)
 	// allow to raise error of loading and/or saving 
 	if (err_cocktail != CYAML_OK || err_stock != CYAML_OK)
 		exit(EXIT_FAILURE);
+	return (int)cocktail_count;
 }
 
 /*!
 \fn menu ( Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktail )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief function allowing the user to choose the type of cocktail he wants to order
 \param *cocktail, table containing all our cocktails
@@ -163,7 +144,7 @@ void menu(Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktail)
 	else if(strstr("non_alcoholic", choice))
 		display_cocktail(cocktail, stock, order, false, nb_cocktail);
 	else if(strstr("own", choice))
-		homemade(cocktail, stock, order);
+		homemade(cocktail, stock, order, nb_cocktail);
 	// only the bartender can add or remove elements for the stock
 	else if(strstr("modify", choice) && person == 1)
 		stock_var(stock);
@@ -177,7 +158,7 @@ void menu(Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktail)
 /*!
 \fn display_cocktail ( Cocktail* cocktail, Ingredient* stock, Order* order, bool value, int nb_cocktail )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief function that displays all available cocktails according to the previous choice, alcoholic or non alcoholic
 \param *cocktail, array containing all our cocktails
@@ -206,7 +187,7 @@ void display_cocktail(Cocktail* cocktail, Ingredient* stock, Order* order, bool 
  /*
  \fn Specs specificity ( Ingredient *ingredient, unsigned nb_ingredient )
  \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
- \version 1.5 final
+ \version final
  \date May 21, 2021
  \brief Function whose objective is to calculate the information of a cocktail via a list of ingredient given in parameter.
  \param *ingredient array containing a list of ingredients used to create a cocktail. This array contains the information for each ingredient.
@@ -237,7 +218,7 @@ Specs specificity(Ingredient *ingredient, unsigned nb_ingredient)
 /*!
 \fn select_ ( Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktail )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief allows the user to choose a cocktail which will be then put in his order.
 \param *cocktail, table containing all our cocktails
@@ -303,7 +284,7 @@ void select_(Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktai
 /*!
 \fn availability ( Cocktail cocktail, Ingredient* stock )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief verifies if the chosen cocktail is available or not
 \param cocktail it is the cocktail chosen in the function select_ or homemade.
@@ -328,7 +309,7 @@ bool availability(Cocktail cocktail, Ingredient* stock)
 /*!
 \fn homemade ( Cocktail* cocktail, Ingredient* stock, Order* order )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief allows the user to create his cocktail according to a list and a quantity of available ingredients
 \param *cocktail, table containing all our cocktails
@@ -336,7 +317,7 @@ bool availability(Cocktail cocktail, Ingredient* stock)
 \param *order, table containing the user's order
 */
 
-void homemade(Cocktail* cocktail, Ingredient* stock, Order* order)
+void homemade(Cocktail* cocktail, Ingredient* stock, Order* order, int nb_cocktail)
 {
 	int i, count = 0;
 	float quantity;
@@ -391,9 +372,9 @@ void homemade(Cocktail* cocktail, Ingredient* stock, Order* order)
 	scanf("%s", test);
 	// either the homemade cocktail is simply created or it is created and saved in the list of cocktails to be reused after
 	if (strstr("yes", test))
-		save_cocktail(cocktail, stock, p_ingredient, order, "save", count);
+		save_cocktail(cocktail, stock, p_ingredient, order, "save", nb_cocktail, count);
 	else
-		save_cocktail(cocktail, stock, p_ingredient, order, "create", count);
+		save_cocktail(cocktail, stock, p_ingredient, order, "create", nb_cocktail, count);
 	for (i = 0; i < count; i++)
 	{
 		free(p_ingredient[i].name);
@@ -404,7 +385,7 @@ void homemade(Cocktail* cocktail, Ingredient* stock, Order* order)
 /*!
 \fn save_cocktail ( Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredient, Order* order, char* mode, int size )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief function allowing to save a cocktail created via the homemade function. The user can then save the cocktail for future use of the program or simply save the cocktail for the display of the order.
 \param *cocktail, table containing all our cocktails
@@ -415,10 +396,10 @@ void homemade(Cocktail* cocktail, Ingredient* stock, Order* order)
 \param size is the number of ingredients in the cocktail created.
 */
 
-void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredient, Order* order, char* mode, int size)
+void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredient, Order* order, char* mode, int nb_cocktail, int size)
 {
 	// amongus is counter and also a very good easter egg <3
-	int amongus = 0, nb_cocktail = count_cocktail(cocktail);
+	int amongus = 0;
 	Cocktail cocktail_spe;
 	order->size++;
 	order->amount = realloc(order->amount , order->size * sizeof(int));
@@ -463,16 +444,16 @@ void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredie
 		if (cocktail == NULL)
 			return;
 		// put the new cocktail in cocktail sequence
+		cocktail[nb_cocktail].name = cocktail_spe.name;
+		cocktail[nb_cocktail].alcoholic = cocktail_spe.alcoholic;
+		cocktail[nb_cocktail].nb_ingredient = size;
 		cocktail[nb_cocktail].ingredient = malloc(size * sizeof(Ingredient));
 		for (int i = 0; i < size; i++)
 		{
 			cocktail[nb_cocktail].ingredient[i] = cocktail_spe.ingredient[i];
 		}
-		cocktail[nb_cocktail].name = cocktail_spe.name;
-		cocktail[nb_cocktail].alcoholic = cocktail_spe.alcoholic;
-		cocktail[nb_cocktail].nb_ingredient = size;
 		// save cocktail sequence with the new cocktail in order to add it to the temporary file cocktail
-		yaml(&cocktail, &stock, "save");
+		yaml(&cocktail, &stock, "save", nb_cocktail + 1);
 	}
 	else
 	{
@@ -486,7 +467,7 @@ void save_cocktail(Cocktail* cocktail, Ingredient* stock, Ingredient* p_ingredie
 /*!
 \fn quantity_Less ( Ingredient* ingredient, Ingredient* stock, size_t nb_ingredient )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief decreases the quantity of ingredients in our stock according to the cocktail sent in parameter
 \param *ingredient array containing all the ingredients of the chosen cocktail
@@ -510,7 +491,7 @@ void quantity_Less(Ingredient* ingredient, Ingredient* stock, size_t nb_ingredie
 /*!
 \fn stock_var ( Ingredient* stock )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief allows the bartender to modify the ingredient quantities, he can then increase or decrease the available quantity of each ingredient.
 \param *stock, ingredient table containing the stocks of each ingredient.
@@ -560,7 +541,7 @@ void stock_var(Ingredient* stock)
 /*!
 \fn order_var ( Order* order )
 \author GonsThomas AlzoubaidyMaxime LaghzaouiMarwane
-\version 1.5 final
+\version final
 \date May 21, 2021
 \brief Function whose objective is to display and manipulate the order, i.e.
 to increase the number of cocktail to order or to decrease it as well as to cancel its order (by taking nothing for example)

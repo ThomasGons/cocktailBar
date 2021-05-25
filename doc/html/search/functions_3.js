@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['homemade_28',['homemade',['../cocktail__bar_8c.html#acb1acc1982df0f4377d98057525b7ca2',1,'homemade(Cocktail *cocktail, Ingredient *stock, Order *order):&#160;cocktail_bar.c'],['../cocktail__bar_8h.html#a4b785892d37f000e3dd74ee84dc233b4',1,'homemade(Cocktail *cocktail, Ingredient *stock, Order *order):&#160;cocktail_bar.c']]]
+  ['order_5fvar_27',['order_var',['../cocktail__bar_8c.html#a832874c841454f87b3e3ab6985b0a9b4',1,'order_var(Order *order):&#160;cocktail_bar.c'],['../cocktail__bar_8h.html#a8d3d2238cfcc8375173c5c767f0264fc',1,'order_var(Order *order):&#160;cocktail_bar.c']]]
 ];
