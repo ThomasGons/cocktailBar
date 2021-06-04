@@ -79,7 +79,7 @@ void reset_yaml()
 	// allow to raise error of loading and/or saving 
 	if (err_cocktail != CYAML_OK || err_stock != CYAML_OK)
 		exit(EXIT_FAILURE);
-	/*saving datas in the temporaries files allows to overwrite and
+	/*saving data in the temporaries files allows to overwrite and
 	thus reset temporaries files which can contains homemade cocktails added previously*/
 	err_cocktail = cyaml_save_file("config/tmp_cocktail.yml", &config, &cocktail_sequence_schema,
 			(void*)init_cocktail, __INIT_COCKTAIL);
@@ -106,7 +106,7 @@ int yaml(Cocktail** cocktail, Ingredient** stock, char* mode, int nb_cocktail)
 {
 	cyaml_err_t err_cocktail, err_stock;
 	unsigned cocktail_count, stock_count; 
-	// loading or saving structure's datas according to the mode 
+	// loading or saving structure's data according to the mode 
 	err_cocktail = (!strcmp(mode, "load"))?cyaml_load_file("config/tmp_cocktail.yml", &config, &cocktail_sequence_schema,
 			(void **)cocktail, &cocktail_count): cyaml_save_file("config/tmp_cocktail.yml", &config, &cocktail_sequence_schema,
 				(void*)*cocktail, nb_cocktail);
@@ -505,7 +505,7 @@ void stock_var(Ingredient* stock)
 	printf("\n The stock contains:\n");
 	for(i = 0; i < STOCK; i++)
 	{
-		printf("\t - %s (%0.3f kg/L): %0.2f $\n",stock[i].name, stock[i].quantity / 1000, stock[i].price);
+		printf("\t - %s (%0.3f kg/L): %0.2f $\n", stock[i].name, stock[i].quantity / 1000, stock[i].price);
 	}
 	do
 	{

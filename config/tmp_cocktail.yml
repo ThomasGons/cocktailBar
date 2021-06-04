@@ -405,19 +405,3 @@
     alcohol: 0
     sugar: 1.01
     price: 7.8
-- name: test
-  alcoholic: false
-  ingredient:
-  - name: lime
-    quantity: 40
-    alcohol: 0
-    sugar: 0.002
-    price: 2
-- name: element
-  alcoholic: false
-  ingredient:
-  - name: sugar
-    quantity: 10
-    alcohol: 0
-    sugar: 1
-    price: 1
