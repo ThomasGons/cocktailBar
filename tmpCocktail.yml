@@ -1,0 +1,407 @@
+- alcoholic: true
+  ingredient:
+  - alcohol: 40
+    name: cointreau
+    price: 32.6
+    quantity: 20
+    sugar: 0
+  - alcohol: 0
+    name: ice_cube
+    price: 0.1
+    quantity: 54
+    sugar: 0
+  - alcohol: 0
+    name: lime
+    price: 3.5
+    quantity: 40
+    sugar: 0
+  - alcohol: 40
+    name: vodka
+    price: 20
+    quantity: 40
+    sugar: 0
+  name: balalaika
+- alcoholic: true
+  ingredient:
+  - alcohol: 45
+    name: cachaca
+    price: 25
+    quantity: 60
+    sugar: 0
+  - alcohol: 0
+    name: lime
+    price: 3.5
+    quantity: 10
+    sugar: 0.2
+  - alcohol: 0
+    name: sugar
+    price: 1
+    quantity: 15
+    sugar: 15
+  name: caipirinha
+- alcoholic: true
+  ingredient:
+  - alcohol: 0
+    name: cinnamon_stick
+    price: 30
+    quantity: 80
+    sugar: 1.8
+  - alcohol: 0
+    name: cinnamon_powder
+    price: 7
+    quantity: 8
+    sugar: 0.18
+  - alcohol: 0
+    name: coconut_cream
+    price: 5
+    quantity: 200
+    sugar: 6.6
+  - alcohol: 0
+    name: egg_yolk
+    price: 7
+    quantity: 20
+    sugar: 0.12
+  - alcohol: 0
+    name: nutmeg
+    price: 75
+    quantity: 8
+    sugar: 2.2
+  - alcohol: 0
+    name: sweetened_condensed_milk
+    price: 7
+    quantity: 180
+    sugar: 99
+  - alcohol: 0
+    name: vanilla_pod
+    price: 300
+    quantity: 3.5
+    sugar: 0.45
+  - alcohol: 37.5
+    name: white_rum
+    price: 30
+    quantity: 100
+    sugar: 0
+  name: coquito
+- alcoholic: true
+  ingredient:
+  - alcohol: 0
+    name: lime
+    price: 3.5
+    quantity: 20
+    sugar: 0.4
+  - alcohol: 35
+    name: tequila
+    price: 30
+    quantity: 40
+    sugar: 0
+  - alcohol: 30
+    name: triple_sec
+    price: 21
+    quantity: 20
+    sugar: 0
+  name: margarita
+- alcoholic: true
+  ingredient:
+  - alcohol: 0
+    name: lime_juice
+    price: 3.5
+    quantity: 10
+    sugar: 0.25
+  - alcohol: 0
+    name: sparkling_water
+    price: 0.5
+    quantity: 300
+    sugar: 0
+  - alcohol: 0
+    name: sugarcane_syrup
+    price: 5
+    quantity: 40
+    sugar: 85
+  - alcohol: 37.5
+    name: white_rum
+    price: 30
+    quantity: 40
+    sugar: 0
+  name: mojito
+- alcoholic: true
+  ingredient:
+  - alcohol: 0
+    name: coconut_milk
+    price: 4.5
+    quantity: 40
+    sugar: 19
+  - alcohol: 0
+    name: pineapple_juice
+    price: 3
+    quantity: 60
+    sugar: 110
+  - alcohol: 56.25
+    name: white_rum
+    price: 10
+    quantity: 60
+    sugar: 0
+  name: pina_colada
+- alcoholic: true
+  ingredient:
+  - alcohol: 0
+    name: grapefruit_juice
+    price: 32
+    quantity: 100
+    sugar: 14
+  - alcohol: 0
+    name: orange_juice
+    price: 2
+    quantity: 100
+    sugar: 8
+  - alcohol: 0
+    name: pineapple_juice
+    price: 3
+    quantity: 100
+    sugar: 1.4
+  - alcohol: 0
+    name: sugarcane_syrup
+    price: 5
+    quantity: 50
+    sugar: 42.5
+  - alcohol: 56.25
+    name: white_rum
+    price: 10
+    quantity: 100
+    sugar: 0
+  name: punch
+- alcoholic: true
+  ingredient:
+  - alcohol: 0
+    name: melon_juice
+    price: 3
+    quantity: 125
+    sugar: 17.5
+  - alcohol: 12
+    name: pink_wine
+    price: 11
+    quantity: 250
+    sugar: 0
+  name: slushie
+- alcoholic: true
+  ingredient:
+  - alcohol: 28.5
+    name: campari
+    price: 35
+    quantity: 40
+    sugar: 0
+  - alcohol: 0
+    name: pineapple_juice
+    price: 3
+    quantity: 40
+    sugar: 5.6
+  - alcohol: 12
+    name: white_wine
+    price: 10
+    quantity: 60
+    sugar: 0
+  name: spritz
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: apricot_juice
+    price: 3
+    quantity: 120
+    sugar: 10.8
+  - alcohol: 0
+    name: banana_juice
+    price: 6
+    quantity: 80
+    sugar: 17.6
+  - alcohol: 0
+    name: coconut_milk
+    price: 4.5
+    quantity: 40
+    sugar: 1.32
+  name: banarama
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: pineapple_juice
+    price: 3
+    quantity: 100
+    sugar: 12
+  - alcohol: 0
+    name: lime_juice
+    price: 3.5
+    quantity: 10
+    sugar: 0.25
+  - alcohol: 0
+    name: passion_fruit_juice
+    price: 3
+    quantity: 60
+    sugar: 7.2
+  - alcohol: 0
+    name: pomegrenate_syrup
+    price: 7
+    quantity: 20
+    sugar: 6
+  name: bora_bora
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: citrus_soda
+    price: 4.5
+    quantity: 50
+    sugar: 2.85
+  - alcohol: 0
+    name: mint_syrup
+    price: 2
+    quantity: 5
+    sugar: 3.25
+  - alcohol: 0
+    name: orange_juice
+    price: 2
+    quantity: 100
+    sugar: 8
+  name: capitole
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: grapefruit_juice
+    price: 2
+    quantity: 40
+    sugar: 5.6
+  - alcohol: 0
+    name: lime_juice
+    price: 3.5
+    quantity: 100
+    sugar: 2.5
+  - alcohol: 0
+    name: orange_juice
+    price: 2
+    quantity: 20
+    sugar: 1.6
+  name: incorruptible
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: cinnamon_syrup
+    price: 10
+    quantity: 10
+    sugar: 5
+  - alcohol: 0
+    name: citrus_soda
+    price: 4.5
+    quantity: 85
+    sugar: 4.8
+  - alcohol: 0
+    name: orange_juice
+    price: 2
+    quantity: 40
+    sugar: 3.2
+  - alcohol: 0
+    name: strawberry_syrup
+    price: 4.5
+    quantity: 20
+    sugar: 16.8
+  name: mocktail
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: lime_juice
+    price: 3.5
+    quantity: 10
+    sugar: 0.25
+  - alcohol: 0
+    name: sparkling_water
+    price: 0.5
+    quantity: 150
+    sugar: 0
+  - alcohol: 0
+    name: sugarcane_syrup
+    price: 5
+    quantity: 30
+    sugar: 25.5
+  name: nojito
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: coconut_milk
+    price: 4.5
+    quantity: 50
+    sugar: 1.6
+  - alcohol: 0
+    name: pina_colada_syrup
+    price: 11.5
+    quantity: 15
+    sugar: 12.15
+  - alcohol: 0
+    name: pineapple_juice
+    price: 3
+    quantity: 100
+    sugar: 14
+  name: pina_colada_na
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: grapefruit_juice
+    price: 2
+    quantity: 190
+    sugar: 26.6
+  - alcohol: 0
+    name: orange_juice
+    price: 2
+    quantity: 190
+    sugar: 15.2
+  - alcohol: 0
+    name: pineapple_juice
+    price: 3
+    quantity: 190
+    sugar: 26.6
+  - alcohol: 0
+    name: sugarcane_syrup
+    price: 5
+    quantity: 50
+    sugar: 42.5
+  name: punch_na
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: lime_juice
+    price: 3.5
+    quantity: 125
+    sugar: 3.125
+  - alcohol: 0
+    name: orange_juice
+    price: 2
+    quantity: 125
+    sugar: 2.5
+  - alcohol: 0
+    name: pomegrenate_syrup
+    price: 3
+    quantity: 15
+    sugar: 7.05
+  name: rio
+- alcoholic: false
+  ingredient:
+  - alcohol: 0
+    name: lime_juice
+    price: 3.5
+    quantity: 40
+    sugar: 1
+  - alcohol: 0
+    name: melon_juice
+    price: 3
+    quantity: 15
+    sugar: 2.1
+  - alcohol: 0
+    name: sugar
+    price: 1
+    quantity: 15
+    sugar: 15
+  - alcohol: 0
+    name: water
+    price: 0.2
+    quantity: 25
+    sugar: 0
+  - alcohol: 0
+    name: watermelon_juice
+    price: 7.8
+    quantity: 150
+    sugar: 1.01
+  name: summer_lemonade
