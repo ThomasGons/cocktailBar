@@ -1,5 +1,7 @@
 Steps before exectution:
+
     make sure you have python3 and as possible the latest version
+
     - with poetry:
         * install poetry with your package manager for example
         * initialize poetry with poetry init in the project directory
