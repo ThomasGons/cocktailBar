@@ -60,7 +60,7 @@ person, turnover = 0, 0
 
 def yaml(cocktail, stock, mode):
     openMode = "r" if mode in "load" else "w"
-    with open(r'tmpCocktail.yml', openMode) as ymlCocktail, open(r'tmpStock.yml', openMode) as ymlStock:
+    with open(r'config/tmpCocktail.yml', openMode) as ymlCocktail, open(r'config/tmpStock.yml', openMode) as ymlStock:
         if openMode == "r":
             loadedCocktail = yml.load(ymlCocktail, Loader = yml.FullLoader)
             loadedStock = yml.load(ymlStock, Loader = yml.FullLoader)
@@ -72,10 +72,10 @@ def yaml(cocktail, stock, mode):
 
 
 def reset_yaml():
-    with open(r'initCocktail.yml') as initYmlCocktail, open(r'initStock.yml') as initYmlStock:
+    with open(r'config/initCocktail.yml') as initYmlCocktail, open(r'config/initStock.yml') as initYmlStock:
         loadedInitCocktail = yml.load(initYmlCocktail, Loader = yml.FullLoader)
         loadedInitStock = yml.load(initYmlStock, Loader = yml.FullLoader)
-    with open(r'tmpCocktail.yml', "w") as tmpYmlCocktail, open(r'tmpStock.yml', "w") as tmpYmlStock:
+    with open(r'config/tmpCocktail.yml', "w") as tmpYmlCocktail, open(r'config/tmpStock.yml', "w") as tmpYmlStock:
         yml.dump(loadedInitCocktail, tmpYmlCocktail)
         yml.dump(loadedInitStock, tmpYmlStock) 
 
